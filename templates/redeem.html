@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redeem Coupon</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Redeem Coupon</h2>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary mb-3">Logout</a>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Coupon Code</label>
+                <input type="text" name="code" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Check Coupon</button>
+        </form>
+    </div>
+</body>
+</html>
